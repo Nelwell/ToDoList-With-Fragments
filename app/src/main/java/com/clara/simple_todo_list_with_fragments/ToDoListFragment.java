@@ -28,7 +28,7 @@ public class ToDoListFragment extends Fragment implements ToDoListAdapter.OnList
 
 	private ListItemSelectedListener mItemSelectedListener;
 
-	private static final String TAG = "TODO LIST FRAGMENT" ;
+	private static final String TAG = "TODO LIST FRAGMENT";
 	private static final String ARGS_TODO_LIST = "to do list arguments";
 
 	private RecyclerView mListView;

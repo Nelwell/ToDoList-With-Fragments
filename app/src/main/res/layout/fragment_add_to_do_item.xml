@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/add_item_background"
+    android:background="#435EF3"
     tools:context="com.clara.simple_todo_list_with_fragments.AddToDoItemFragment">
 
     <Button
@@ -13,7 +13,10 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
         android:text="@string/submit"
+        android:textColor="#0D1A5E"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/urgent_checkbox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

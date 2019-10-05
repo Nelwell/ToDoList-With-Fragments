@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/item_detail_background"
-    tools:context="com.clara.simple_todo_list_with_fragments.ToDoItemDetailFragment"
     android:clickable="true"
-    android:focusable="true">  <!-- because this fragment will sit above other fragments, need to catch click events
+    android:focusable="true"
+    tools:context="com.clara.simple_todo_list_with_fragments.ToDoItemDetailFragment">  <!-- because this fragment will sit above other fragments, need to catch click events
                                         so they are not propagated to the Fragments which may be below -->
 
     <Button
@@ -16,7 +16,12 @@
         android:layout_below="@+id/to_do_detail_urgent_checkbox"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="#FFFFFF"
         android:text="@string/done"
+        android:textColor="#0D1A5E"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -29,6 +34,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/to_do_detail_date_created_textview"
         android:text="@string/urgent"
+        android:textColor="#0D1A5E"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/to_do_detail_date_created_textview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -43,6 +50,9 @@
         android:lines="4"
         android:padding="@dimen/todo_detail_text_padding"
         android:shadowColor="@color/colorAccent"
+        android:textColor="#0D1A5E"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/to_do_detail_date_created_textview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -56,6 +66,7 @@
         android:layout_below="@+id/to_do_detail_text_textview"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:textColor="#0D1A5E"
         app:layout_constraintBottom_toTopOf="@+id/to_do_detail_done_button"
         app:layout_constraintEnd_toStartOf="@+id/to_do_detail_urgent_checkbox"
         app:layout_constraintHorizontal_bias="0.5"
