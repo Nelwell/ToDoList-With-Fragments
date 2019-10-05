@@ -67,8 +67,8 @@ public class ToDoItemDetailFragment extends Fragment {
 
 		View view = inflater.inflate(R.layout.fragment_to_do_item_detail, container, false);
 
-		// TODO Get the To Do item from the arguments passed in when this Fragment was created.
-		// TODO call setTodoItem to set data in view components
+		// Get the To Do item from the arguments passed in when this Fragment was created.
+		// Call setTodoItem to set data in view components
 
 		if (getArguments() !=null && getArguments().getParcelable(ARG_TODO_ITEM) != null) {
 
@@ -90,8 +90,8 @@ public class ToDoItemDetailFragment extends Fragment {
 
 	public void setTodoItem(ToDoItem item) {
 
-		// TODO set data in view components
-		// TODO add Done button event listener - will send message to MarkItemAsDoneListener
+		// Set data in view components
+		// Add Done button event listener - will send message to MarkItemAsDoneListener
 
 		final ToDoItem toDoItem = item;
 

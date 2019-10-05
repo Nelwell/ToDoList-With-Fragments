@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements
 
 			AddToDoItemFragment addToDoItemFragment = AddToDoItemFragment.newInstance();
 			ToDoListFragment toDoListFragment = ToDoListFragment.newInstance(mTodoItems);
+			ToDoItemDetailFragment detailFragment = ToDoItemDetailFragment.newInstance(new ToDoItem("", false));
 
 			FragmentManager fm = getSupportFragmentManager();
 			FragmentTransaction ft = fm.beginTransaction();
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements
 			// Add, including tags to help find the fragments on screen, if they need to be updated
 			ft.add(R.id.add_todo_view_container, addToDoItemFragment, TAG_ADD_NEW_FRAG);
 			ft.add(R.id.todo_list_view_container, toDoListFragment, TAG_LIST_FRAG);
+			ft.add(R.id.todo_detail_view_container, detailFragment, TAG_DETAIL_FRAG);
 
 			ft.commit();
 
@@ -80,18 +82,16 @@ public class MainActivity extends AppCompatActivity implements
 	@Override
 	public void newItemCreated(ToDoItem newItem) {
 
-		Log.d(TAG, "Notified that this new item was created: " + mTodoItems);
-
-		// Add item to mTodoItems ArrayList
-		// Notify the ToDoListFragment that the list data has changed
-
 		mTodoItems.add(newItem);
 
-		// get reference to ToDoListFragment from the FragmentManager,
-		// and tell this Fragment that the data set has changed
+		// Add item to the ArrayList
+		Log.d(TAG, "Notified that this new item was created: " + mTodoItems);
+
+		// Get reference to List Fragment from the FragmentManager, tell this Fragment that the date has changed
 		FragmentManager fm = getSupportFragmentManager();
 		ToDoListFragment listFragment = (ToDoListFragment) fm.findFragmentByTag(TAG_LIST_FRAG);
 		listFragment.notifyItemsChanged();
+
 		hideKeyboard();
 
 	}
@@ -99,49 +99,21 @@ public class MainActivity extends AppCompatActivity implements
 	@Override
 	public void itemSelected(ToDoItem selected) {
 
-		Log.d(TAG, "Notified that this item was selected: " + selected);
-
+		FragmentManager fm = getSupportFragmentManager();
 		// Create new ToDoItemDetailFragment with the selected ToDoItem
-		// Show on screen
-
-		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-
-		// Create new ToDoItemDetailFragment with the selected ToDoItem
-		ToDoItemDetailFragment toDoItemDetailFragment = ToDoItemDetailFragment.newInstance(selected);
-		ft.replace(android.R.id.content, toDoItemDetailFragment, TAG_DETAIL_FRAG);
-
-		// Add to the back stack, so if user presses back button from the Detail Fragment,
-		// it will revert this transaction - Activity will remove the Detail Fragment, showing the Add+List fragments
-		ft.addToBackStack(TAG_DETAIL_FRAG);
-
-		ft.commit();
-
+		ToDoItemDetailFragment toDoItemDetailFragment = (ToDoItemDetailFragment) fm.findFragmentByTag(TAG_DETAIL_FRAG);
+		toDoItemDetailFragment.setTodoItem(selected);
 	}
 
 	@Override
 	public void todoItemDone(ToDoItem doneItem) {
 
-		Log.d(TAG, "Notified that this item is done: " + mTodoItems);
-
 		// Remove item from list
 		mTodoItems.remove(doneItem);
-
 		// Find ToDoListFragment and tell it that the  data has changed
 		FragmentManager fm = getSupportFragmentManager();
 		ToDoListFragment listFragment = (ToDoListFragment) fm.findFragmentByTag(TAG_LIST_FRAG);
 		listFragment.notifyItemsChanged();
-
-		// Removes the Detail fragment from the Activity, which leaves the Add+List fragments.
-		FragmentTransaction ft = fm.beginTransaction();
-
-		// Find the Detail fragment and remove it, if it is on screen
-		ToDoItemDetailFragment detailFragment = (ToDoItemDetailFragment) fm.findFragmentByTag(TAG_DETAIL_FRAG);
-		if (detailFragment != null) {
-			ft.remove(detailFragment);
-		}
-
-		ft.commit();
-
 	}
 
 	private void hideKeyboard() {

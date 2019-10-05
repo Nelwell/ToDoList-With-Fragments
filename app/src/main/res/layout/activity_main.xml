@@ -19,9 +19,17 @@
             android:id="@+id/todo_list_view_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/todo_detail_view_container"
             app:layout_constraintTop_toBottomOf="@+id/add_todo_view_container"
-            app:layout_constraintVertical_weight="3"/>
+            app:layout_constraintVertical_weight="2"/>
+
+        <FrameLayout
+            android:id="@+id/todo_detail_view_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/todo_list_view_container"
+            app:layout_constraintVertical_weight="1.5"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
